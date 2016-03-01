@@ -101,7 +101,7 @@ function playToFive() {
       }
 
     }
-    return ['Player Wins '+playerWins, 'Computer Wins '+computerWins, 'Ties: '+ ties];
+    return ['Player Final Score '+playerWins, 'Computer Final Score '+computerWins, 'Ties: '+ ties];
 }
 
 playToFive();
