@@ -52,19 +52,24 @@ function getWinner(playerMove,computerMove) {
     var scissors = 'scissors';
     console.log('Player move => ' +playerMove+ ' | Computer move => ' +computerMove);
 
+    if(playerMove ==='rock' || playerMove ==='paper' || playerMove === 'scissors'){
+      if( (playerMove == rock && computerMove == scissors) || (playerMove == paper && computerMove == rock) || (playerMove == scissors && computerMove == paper)){
 
-    if( (playerMove == rock && computerMove == scissors) || (playerMove == paper && computerMove == rock) || (playerMove == scissors && computerMove == paper)){
-
-      winner = 'Player';
+        winner = 'Player';
+      }
+      else if ( (computerMove == rock && playerMove == scissors) || (computerMove == paper && playerMove == rock) || (computerMove == scissors && playerMove == paper)){
+        winner = 'Computer';
+      }
+      else if ( (playerMove == computerMove)){
+        winner = 'Tie';
+        console.log('It was a tie!');
+      }
+      return winner;
     }
-    else if ( (computerMove == rock && playerMove == scissors) || (computerMove == paper && playerMove == rock) || (computerMove == scissors && playerMove == paper)){
-      winner = 'Computer';
-    }
-    else if ( (playerMove == computerMove)){
-      winner = 'Tie';
-      console.log('It was a tie!');
-    }
-    return winner;
+    else {
+        console.log('That was not the correct input');
+        getWinner(getPlayerMove(),getComputerMove());
+      }
 }
 
 function playToFive() {
@@ -77,20 +82,21 @@ function playToFive() {
     do {
       console.log('Score: Player with '+playerWins+' wins. Computer with '+computerWins+' wins.');
 
-      var playerMove = getPlayerMove(getInput());
+      var playerMove = getPlayerMove(getInput().toLowerCase());
       var computerMove = getComputerMove(randomPlay());
       var winner = getWinner(playerMove, computerMove);
-
-      if(winner == 'Player'){
-        playerWins++;
-      }
-      else if(winner == 'Computer'){
-        computerWins++;
-      }
-      else {
-        ties++;
-      }
-    }
+      
+          if(winner == 'Player'){
+            playerWins++;
+          }
+          else if(winner == 'Computer'){
+            computerWins++;
+          }
+          else {
+            ties++;
+          }
+        }
+      
 
     while (playerWins < 5 && computerWins < 5){
       if(playerWins>computerWins){
